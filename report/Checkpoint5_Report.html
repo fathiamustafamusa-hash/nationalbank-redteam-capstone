@@ -1,0 +1,626 @@
+<h1 id="nationalbank-reserve-red-team-engagement">NationalBank Reserve —
+Red Team Engagement</h1>
+<h2
+id="checkpoint-5-executive-pentest-report-defensive-roadmap">Checkpoint
+5: Executive Pentest Report + Defensive Roadmap</h2>
+<p><strong>Analyst:</strong> Mustafa Musa Ahmed | <strong>Year:</strong>
+2026<br />
+<strong>Classification:</strong> CONFIDENTIAL — Authorized Lab
+Environment<br />
+<strong>Deliverables:</strong> Full pentest report, risk matrix, 90-day
+roadmap, 5-min briefing</p>
+<hr />
+<h2 id="executive-summary">1. Executive Summary</h2>
+<p>NationalBank Reserve engaged a red team to assess the security
+posture of its simulated banking infrastructure across 5 phases: scoping
+and threat modelling (CP1), infrastructure assessment (CP2), web + API
+assessment (CP3), social engineering + detection evasion (CP4), and this
+consolidated executive report (CP5).</p>
+<p><strong>The assessment identified 22 findings:</strong> - <strong>5
+CRITICAL</strong> — allow full compromise (RCE, auth bypass, DB
+credential leak) - <strong>12 HIGH</strong> — data theft, privilege
+escalation, account takeover - <strong>3 MEDIUM</strong> —
+defense-in-depth erosion - <strong>2 LOW</strong> — information
+disclosure / observation</p>
+<p><strong>Overall risk rating: CRITICAL.</strong></p>
+<p>Full compromise of the simulated environment was achieved in
+<strong>under 15 minutes</strong> using only public tooling, default
+credentials, and one phishing email. No advanced tooling or zero-days
+were required.</p>
+<p><strong>Most severe business impact:</strong> If applied to
+production, an attacker could extract all customer records, execute
+arbitrary code on the web server, bypass authentication to any account,
+and read internal files via SSRF. Regulatory exposure (PCI-DSS, RBI
+guidelines) would be immediate and material.</p>
+<p><strong>Recommended immediate action:</strong> Isolate the affected
+systems, disable the vulnerable services (FTP, Telnet, unrestricted file
+upload), rotate all credentials, and execute the 90-day defensive
+roadmap below.</p>
+<hr />
+<h2 id="engagement-scope-rules">2. Engagement Scope &amp; Rules</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Client</td>
+<td>NationalBank Reserve (Mumbai, 5,000 employees)</td>
+</tr>
+<tr>
+<td>Scope</td>
+<td>External attack surface + simulated internal access</td>
+</tr>
+<tr>
+<td>In-scope</td>
+<td>DVWA (simulated web), Flask API (simulated), Kali attacker, MailHog,
+Gophish</td>
+</tr>
+<tr>
+<td>Out-of-scope</td>
+<td>Real customer data, production networks, physical intrusion,
+DoS</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Authorized lab capstone</td>
+</tr>
+<tr>
+<td>Timeline</td>
+<td>5 checkpoints over 12 weeks</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="assessment-methodology">3. Assessment Methodology</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Tooling</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reconnaissance</td>
+<td>Nmap 7.98, Nikto 2.6.1, manual OSINT</td>
+<td>Ports, services, versions, web paths</td>
+</tr>
+<tr>
+<td>Web</td>
+<td>Custom Python (requests), DVWA v1.10</td>
+<td>OWASP Top 10 findings</td>
+</tr>
+<tr>
+<td>API</td>
+<td>Custom Python (flask + requests), JWT</td>
+<td>API Security Top 10 findings</td>
+</tr>
+<tr>
+<td>Social Engineering</td>
+<td>Gophish v0.12.1, MailHog</td>
+<td>Phishing kill chain evidence</td>
+</tr>
+<tr>
+<td>Detection Evasion</td>
+<td>msfvenom, custom XOR obfuscator, ClamAV</td>
+<td>Signature bypass results</td>
+</tr>
+<tr>
+<td>Scoring</td>
+<td>CVSS v3.1, MITRE ATT&amp;CK, OWASP</td>
+<td>Severity + mapping</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="risk-matrix">4. Risk Matrix</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th>Low Impact</th>
+<th>Medium Impact</th>
+<th>High Impact</th>
+<th>Critical Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>High Likelihood</strong></td>
+<td></td>
+<td>NB-15, NB-16</td>
+<td>NB-13, NB-14, NB-18</td>
+<td><strong>NB-01, NB-02, NB-03, NB-04, NB-05</strong></td>
+</tr>
+<tr>
+<td><strong>Medium Likelihood</strong></td>
+<td>NB-17</td>
+<td>NB-12, NB-22</td>
+<td>NB-06, NB-07, NB-08, NB-09, NB-10, NB-11, NB-19, NB-20, NB-21</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Low Likelihood</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="findings-summary">5. Findings Summary</h2>
+<p>Full details in <code>Unified_Findings_Register.md</code>. Top 10 by
+severity:</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Finding</th>
+<th>CVSS</th>
+<th>Severity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NB-01</td>
+<td>DB credentials exposed via <code>.bak</code> file</td>
+<td>9.8</td>
+<td>CRITICAL</td>
+</tr>
+<tr>
+<td>NB-02</td>
+<td>SQL Injection (web)</td>
+<td>9.8</td>
+<td>CRITICAL</td>
+</tr>
+<tr>
+<td>NB-03</td>
+<td>Command Injection / RCE</td>
+<td>9.8</td>
+<td>CRITICAL</td>
+</tr>
+<tr>
+<td>NB-04</td>
+<td>API Broken Authentication</td>
+<td>9.8</td>
+<td>CRITICAL</td>
+</tr>
+<tr>
+<td>NB-05</td>
+<td>API SQL Injection</td>
+<td>9.8</td>
+<td>CRITICAL</td>
+</tr>
+<tr>
+<td>NB-06</td>
+<td>BOLA — cross-user object access</td>
+<td>8.6</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td>NB-09</td>
+<td>SSRF — local file read</td>
+<td>8.6</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td>NB-18</td>
+<td>Unrestricted file upload</td>
+<td>8.8</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td>NB-07</td>
+<td>Excessive data exposure</td>
+<td>8.2</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td>NB-08</td>
+<td>Mass assignment to admin role</td>
+<td>8.1</td>
+<td>HIGH</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="attack-chain-how-it-all-connects">6. Attack Chain — How It All
+Connects</h2>
+<ol type="1">
+<li><strong>Initial Access (CP4)</strong> — Phishing email
+(<code>it-support@nationalbank.com</code>) bypassed gateway → user
+clicked → credentials captured (NB-19, NB-20)</li>
+<li><strong>Authentication Bypass</strong> — API admin endpoint open
+(NB-04) OR login SQLi (NB-05)</li>
+<li><strong>Lateral Access</strong> — BOLA (NB-06) + excessive data
+exposure (NB-07) enumerate all users and API keys</li>
+<li><strong>Privilege Escalation</strong> — Mass assignment (NB-08)
+grants admin role</li>
+<li><strong>Server Compromise</strong> — SQLi (NB-02) → command
+injection (NB-03) → RCE as <code>www-data</code></li>
+<li><strong>Persistence &amp; Exfil</strong> — SSRF (NB-09) reads
+<code>/etc/passwd</code>; config backup (NB-01) leaks DB
+credentials</li>
+<li><strong>Defense Evasion</strong> — Custom XOR obfuscation (NB-21)
+defeats signature AV</li>
+</ol>
+<p><strong>Time to full compromise: &lt; 15 minutes.</strong></p>
+<hr />
+<h2 id="day-defensive-roadmap">7. 90-Day Defensive Roadmap</h2>
+<h3 id="days-07-contain-immediate">Days 0–7 — CONTAIN (Immediate)</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Action</th>
+<th>Owner</th>
+<th>Finding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Isolate vulnerable hosts from production network</td>
+<td>Infra</td>
+<td>All</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Rotate all DB, API, admin credentials + API keys</td>
+<td>SecOps</td>
+<td>NB-01, 04, 05, 07</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Delete <code>config.inc.php.bak</code> and any backup files from web
+root</td>
+<td>Web</td>
+<td>NB-01</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Disable FTP, Telnet, unrestricted file upload</td>
+<td>Infra</td>
+<td>NB-18</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Block external senders spoofing <code>@nationalbank.com</code>
+(SPF/DKIM/DMARC)</td>
+<td>Email</td>
+<td>NB-19</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Force password reset for all lab accounts + enable MFA</td>
+<td>IAM</td>
+<td>NB-20</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Enable WAF rules for SQLi/XSS/SSRF patterns</td>
+<td>SecOps</td>
+<td>NB-02, 05, 09, 11, 12</td>
+</tr>
+</tbody>
+</table>
+<h3 id="days-830-harden-short-term">Days 8–30 — HARDEN (Short-term)</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Action</th>
+<th>Owner</th>
+<th>Finding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8</td>
+<td>Patch Apache, PHP, and any outdated libraries</td>
+<td>Infra</td>
+<td>NB-14</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Remove directory indexing; disable <code>/config/</code> public
+access</td>
+<td>Web</td>
+<td>NB-13</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Implement parameterized queries everywhere</td>
+<td>Dev</td>
+<td>NB-02, 05</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Add authorization checks to every API endpoint (object + function
+level)</td>
+<td>Dev</td>
+<td>NB-04, 05, 06, 08</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Strip sensitive fields (password, api_key) from API responses</td>
+<td>Dev</td>
+<td>NB-07</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Add CSRF tokens to all state-changing forms</td>
+<td>Dev</td>
+<td>NB-10</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Sanitize/encode all user input (stored + reflected XSS)</td>
+<td>Dev</td>
+<td>NB-11, 12</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Validate + whitelist SSRF allow-list destinations</td>
+<td>Dev</td>
+<td>NB-09</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Deploy EDR (replace signature-only AV)</td>
+<td>SecOps</td>
+<td>NB-21</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Enable AMSI + script block logging</td>
+<td>SecOps</td>
+<td>NB-21</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Set HttpOnly + Secure + SameSite=Strict on all session cookies</td>
+<td>Dev</td>
+<td>NB-15</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Add missing security headers (CSP, HSTS, XCTO, Referrer-Policy)</td>
+<td>Web</td>
+<td>NB-16</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Restrict file-upload MIME + extension + scan with AV</td>
+<td>Web</td>
+<td>NB-18</td>
+</tr>
+</tbody>
+</table>
+<h3 id="days-3190-mature-long-term">Days 31–90 — MATURE (Long-term)</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Action</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21</td>
+<td>Roll out phishing-resistant MFA (FIDO2) to all privileged users</td>
+<td>IAM</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Quarterly phishing simulations + monthly awareness training</td>
+<td>HR/Sec</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Application allowlisting on all production servers</td>
+<td>Infra</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Full network segmentation (DMZ / app / DB / mgmt)</td>
+<td>Infra</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Centralized logging + SIEM with behavioural rules</td>
+<td>SecOps</td>
+</tr>
+<tr>
+<td>26</td>
+<td>24/7 SOC monitoring with threat-hunting rotation</td>
+<td>SecOps</td>
+</tr>
+<tr>
+<td>27</td>
+<td>Formal patch management (30-day cycle for Critical)</td>
+<td>Infra</td>
+</tr>
+<tr>
+<td>28</td>
+<td>Deception technology (honeytokens, canary files)</td>
+<td>SecOps</td>
+</tr>
+<tr>
+<td>29</td>
+<td>Quarterly external + internal red team exercises</td>
+<td>Mgmt</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Annual third-party compliance audit (PCI-DSS, RBI)</td>
+<td>Compliance</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Success metrics:</strong> Critical MTTR ≤ 7 days, High MTTR ≤
+30 days, zero spoofing emails delivered, phishing click-through rate
+&lt; 5%, 100% MFA adoption on admin accounts.</p>
+<hr />
+<h2 id="mitre-attck-coverage-consolidated">8. MITRE ATT&amp;CK Coverage
+(Consolidated)</h2>
+<table>
+<thead>
+<tr>
+<th>Tactic</th>
+<th>Technique</th>
+<th>ID</th>
+<th>Finding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reconnaissance</td>
+<td>Active Scanning</td>
+<td>T1595</td>
+<td>CP1, CP2</td>
+</tr>
+<tr>
+<td>Reconnaissance</td>
+<td>Gather Victim Host Info</td>
+<td>T1592</td>
+<td>CP2</td>
+</tr>
+<tr>
+<td>Initial Access</td>
+<td>Spearphishing Link</td>
+<td>T1566.002</td>
+<td>NB-19</td>
+</tr>
+<tr>
+<td>Execution</td>
+<td>Command and Scripting Interpreter</td>
+<td>T1059</td>
+<td>NB-03</td>
+</tr>
+<tr>
+<td>Execution</td>
+<td>User Execution</td>
+<td>T1204.002</td>
+<td>NB-20</td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>(lab scope — not exploited)</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Privilege Escalation</td>
+<td>Exploitation for Privesc</td>
+<td>T1068</td>
+<td>NB-08</td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>Obfuscated Files or Information</td>
+<td>T1027</td>
+<td>NB-21</td>
+</tr>
+<tr>
+<td>Defense Evasion</td>
+<td>Software Packing</td>
+<td>T1027.002</td>
+<td>NB-22</td>
+</tr>
+<tr>
+<td>Credential Access</td>
+<td>Input Capture: Web Portal</td>
+<td>T1056.003</td>
+<td>NB-20</td>
+</tr>
+<tr>
+<td>Credential Access</td>
+<td>Unsecured Credentials: Files</td>
+<td>T1552.001</td>
+<td>NB-01</td>
+</tr>
+<tr>
+<td>Discovery</td>
+<td>File and Directory Discovery</td>
+<td>T1083</td>
+<td>NB-13</td>
+</tr>
+<tr>
+<td>Collection</td>
+<td>Data from Information Repositories</td>
+<td>T1213</td>
+<td>NB-07</td>
+</tr>
+<tr>
+<td>Impact</td>
+<td>Data Manipulation</td>
+<td>T1565</td>
+<td>NB-02</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="evidence-index">9. Evidence Index</h2>
+<p>All evidence available under <code>evidence/</code>: -
+<code>C2_imported/</code> — Infrastructure scan + screenshots -
+<code>C3_imported/</code> — Web + API evidence, PoCs, reports -
+<code>gophish/</code> — Phishing campaign artifacts -
+<code>detect_*.txt</code> — Detection evasion scan results -
+<code>payload_*.txt</code> — Payload metrics -
+<code>PHASE*_SUMMARY.txt</code> — Per-phase summaries</p>
+<hr />
+<h2 id="conclusion">10. Conclusion</h2>
+<p>The NationalBank Reserve lab environment was fully compromised in
+under 15 minutes. The kill chain combined human, application, and
+infrastructure weaknesses, demonstrating the practical reality that
+security depends on every layer. The 90-day roadmap prioritizes
+containment (Days 0–7) before hardening (Days 8–30) and maturity (Days
+31–90), with measurable success criteria to prevent regression.</p>
+<p><strong>Residual risk after roadmap execution: LOW</strong> (assuming
+80%+ of critical actions completed within their timelines).</p>
+<p>Signed: <strong>Mustafa Musa Ahmed</strong><br />
+Date: <strong>2026</strong><br />
+Prepared for authorized lab red team exercise.</p>
+<hr />
+<p><em>End of report.</em></p>
