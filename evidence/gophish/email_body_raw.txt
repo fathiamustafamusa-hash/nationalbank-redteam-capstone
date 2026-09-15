@@ -1,0 +1,19 @@
+--6e7d5aa9a78eeb22b1928eec1f4720e467c764a32f225ff8521289a2fa73
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+
+Dear Test, your password will expire. Visit http://192.168.56.101?rid=3DoUt=
+rjNB to update.
+--6e7d5aa9a78eeb22b1928eec1f4720e467c764a32f225ff8521289a2fa73
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+
+<html><body>
+<p>Dear Test,</p>
+<p>Your network password will expire in <strong>2 hours</strong>. To avoid =
+account lockout, please update your credentials immediately.</p>
+<p><a href=3D"http://192.168.56.101?rid=3DoUtrjNB">Click Here to Update Pas=
+sword</a></p>
+<p>Thank you,<br>NationalBank IT Security Team</p>
+</body></html>
+--6e7d5aa9a78eeb22b1928eec1f4720e467c764a32f225ff8521289a2fa73--

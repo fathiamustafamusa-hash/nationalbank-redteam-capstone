@@ -1,0 +1,23 @@
+Phase 3 — Detection Evasion (Lab)
+Toolchain: msfvenom (Metasploit), custom Python XOR obfuscator, ClamAV proxy scanner
+
+Payloads produced:
+  1. rev_shell.exe       - unencoded windows/meterpreter/reverse_tcp
+  2. encoded_shell.exe   - x86/shikata_ga_nai, 10 iterations
+  3. obfuscated_shell.exe- encoded + custom XOR (0xAA) via scripts/obfuscator.py
+
+Metrics collected:
+  - SHA-256 hash of each sample
+  - String count before/after (34 -> 29 -> 8)
+  - Shannon entropy per sample
+  - ClamAV detection results per sample
+  - EICAR hash saved as a control reference
+
+Limit of lab environment: no Windows Defender VM was available; ClamAV used
+as proxy signature engine. Detection evasion documented by signature-only
+scan and byte-level heuristics (strings, entropy).
+
+MITRE ATT&CK:
+  T1027   Obfuscated Files or Information
+  T1027.002 Software Packing (shikata_ga_nai)
+  T1587.001 Develop Capabilities: Malware

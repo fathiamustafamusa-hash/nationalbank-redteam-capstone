@@ -1,0 +1,5 @@
+|Campaign Created|
+test.user@nationalbank.com|Email Sent|
+test.user@nationalbank.com|Clicked Link|{"payload":{"rid":["oUtrjNB"]},"browser":{"address":"127.0.0.1","user-agent":"curl/8.18.0"}}
+test.user@nationalbank.com|Clicked Link|{"payload":{"rid":["oUtrjNB"]},"browser":{"address":"127.0.0.1","user-agent":"curl/8.18.0"}}
+test.user@nationalbank.com|Submitted Data|{"payload":{"password":["BankPass2026"],"rid":["oUtrjNB"],"username":["test.user"]},"browser":{"address":"127.0.0.1","user-agent":"curl/8.18.0"}}

@@ -1,0 +1,3 @@
+scripts/rev_shell.exe : 34 strings
+scripts/encoded_shell.exe : 29 strings
+scripts/obfuscated_shell.exe : 8 strings

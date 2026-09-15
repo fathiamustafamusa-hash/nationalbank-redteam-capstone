@@ -1,0 +1,7 @@
+200  /login.php
+200  /setup.php
+302  /index.php
+200  /dvwa/
+200  /robots.txt
+404  /admin/
+200  /config/

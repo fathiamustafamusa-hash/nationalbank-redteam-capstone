@@ -1,0 +1,37 @@
+{
+  "id": 1,
+  "name": "NationalBank Phishing Simulation - Lab",
+  "status": "In progress",
+  "results": [
+    {
+      "id": "oUtrjNB",
+      "status": "Email Sent",
+      "ip": "",
+      "latitude": 0,
+      "longitude": 0,
+      "send_date": "2026-09-15T08:38:14.636529176Z",
+      "reported": false,
+      "modified_date": "2026-09-15T08:38:14.636529176Z",
+      "email": "test.user@nationalbank.com",
+      "first_name": "Test",
+      "last_name": "User",
+      "position": "Employee"
+    }
+  ],
+  "timeline": [
+    {
+      "campaign_id": 1,
+      "email": "",
+      "time": "2026-09-15T08:38:14.583720147Z",
+      "message": "Campaign Created",
+      "details": ""
+    },
+    {
+      "campaign_id": 1,
+      "email": "test.user@nationalbank.com",
+      "time": "2026-09-15T08:38:14.636529176Z",
+      "message": "Email Sent",
+      "details": ""
+    }
+  ]
+}

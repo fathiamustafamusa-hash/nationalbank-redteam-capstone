@@ -1,0 +1,5 @@
+Phase 1 — Target Enumeration
+Target: DVWA (Docker container on Kali localhost:8080)
+Service: Apache httpd 2.4.25 (Debian)
+Purpose: Simulates NationalBank web portal for phishing pretext + web attack surface
+MITRE TTPs observed: T1595 (Active Scanning), T1592 (Gather Victim Host Info)

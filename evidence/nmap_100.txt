@@ -1,0 +1,9 @@
+# Nmap 7.98 scan initiated Tue Sep 15 04:22:15 2026 as: /usr/lib/nmap/nmap --privileged -sV -Pn -T4 -oN /home/kali/NationalBank_Checkpoint4/evidence/nmap_100.txt 192.168.56.100
+Nmap scan report for 192.168.56.100
+Host is up (0.00018s latency).
+All 1000 scanned ports on 192.168.56.100 are in ignored states.
+Not shown: 1000 closed tcp ports (reset)
+MAC Address: 08:00:27:E1:6E:AB (Oracle VirtualBox virtual NIC)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Sep 15 04:22:16 2026 -- 1 IP address (1 host up) scanned in 1.17 seconds

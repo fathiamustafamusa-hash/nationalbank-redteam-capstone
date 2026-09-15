@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "name": "IT Security Update",
+  "envelope_sender": "",
+  "subject": "Urgent: Password Expiry Notification",
+  "text": "Dear {{.FirstName}}, your password will expire. Visit {{.URL}} to update.",
+  "html": "\u003chtml\u003e\u003cbody\u003e\n\u003cp\u003eDear {{.FirstName}},\u003c/p\u003e\n\u003cp\u003eYour network password will expire in \u003cstrong\u003e2 hours\u003c/strong\u003e. To avoid account lockout, please update your credentials immediately.\u003c/p\u003e\n\u003cp\u003e\u003ca href=\"{{.URL}}\"\u003eClick Here to Update Password\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003eThank you,\u003cbr\u003eNationalBank IT Security Team\u003c/p\u003e\n\u003c/body\u003e\u003c/html\u003e",
+  "modified_date": "2026-09-15T08:38:14.469146305Z",
+  "attachments": null
+}

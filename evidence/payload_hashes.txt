@@ -1,0 +1,3 @@
+5648ebf3fe2ef97f45fe63d1fe7c022d89c1072eb67069e9b391ce4b3341a54f  scripts/rev_shell.exe
+b6d30a86794474aaeac46533402b2e72b919c0a5f53d704755e859ab83ad9cc0  scripts/encoded_shell.exe
+a01e2ddf8be2b905205a1ac9e8b01ccbccef14137d06f340c285c6ee05015b30  scripts/obfuscated_shell.exe

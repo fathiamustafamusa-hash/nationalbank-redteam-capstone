@@ -1,0 +1,10 @@
+Phase 2 — Phishing Simulation (Lab)
+Tool: Gophish v0.12.1
+Mail catcher: MailHog (Docker 127.0.0.1:1025/8025)
+Campaign: NationalBank Phishing Simulation - Lab
+Sender: it-support@nationalbank.com
+Subject: Urgent: Password Expiry Notification
+Landing: Password Reset (capture enabled)
+Target: test.user@nationalbank.com
+Result: Email sent, link clicked, credentials captured (username=test.user password=BankPass2026)
+MITRE: T1566, T1566.002, T1204.002

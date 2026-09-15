@@ -1,0 +1,13 @@
+scripts/encoded_shell.exe: Win.Trojan.MSShellcode-6360728-0 FOUND
+
+----------- SCAN SUMMARY -----------
+Known viruses: 3628066
+Engine version: 1.4.6
+Scanned directories: 0
+Scanned files: 1
+Infected files: 1
+Data scanned: 0.00 MB
+Data read: 0.00 MB (ratio 1.00:1)
+Time: 11.424 sec (0 m 11 s)
+Start Date: 2026:09:15 04:46:51
+End Date:   2026:09:15 04:47:02

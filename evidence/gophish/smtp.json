@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "interface_type": "SMTP",
+  "name": "Local MailHog",
+  "host": "127.0.0.1:1025",
+  "from_address": "it-support@nationalbank.com",
+  "ignore_cert_errors": true,
+  "headers": null,
+  "modified_date": "2026-09-15T08:38:14.354130251Z"
+}

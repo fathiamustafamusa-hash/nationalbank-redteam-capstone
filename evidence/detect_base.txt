@@ -1,0 +1,13 @@
+scripts/rev_shell.exe: OK
+
+----------- SCAN SUMMARY -----------
+Known viruses: 3628066
+Engine version: 1.4.6
+Scanned directories: 0
+Scanned files: 1
+Infected files: 0
+Data scanned: 0.00 MB
+Data read: 0.00 MB (ratio 1.00:1)
+Time: 17.182 sec (0 m 17 s)
+Start Date: 2026:09:15 04:46:33
+End Date:   2026:09:15 04:46:51

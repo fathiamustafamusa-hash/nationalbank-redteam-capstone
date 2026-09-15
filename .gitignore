@@ -1,0 +1,8 @@
+*.exe
+*.zip
+*.log
+*.db
+__pycache__/
+.DS_Store
+video/*.mp4
+video/*.mov

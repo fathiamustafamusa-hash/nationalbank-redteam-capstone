@@ -1,0 +1,70 @@
+{
+  "id": 1,
+  "name": "NationalBank Phishing Simulation - Lab",
+  "created_date": "2026-09-15T08:38:14.574652877Z",
+  "launch_date": "2026-09-15T00:00:00Z",
+  "send_by_date": "0001-01-01T00:00:00Z",
+  "completed_date": "0001-01-01T00:00:00Z",
+  "template": {
+    "id": 1,
+    "name": "IT Security Update",
+    "envelope_sender": "",
+    "subject": "Urgent: Password Expiry Notification",
+    "text": "Dear {{.FirstName}}, your password will expire. Visit {{.URL}} to update.",
+    "html": "\u003chtml\u003e\u003cbody\u003e\n\u003cp\u003eDear {{.FirstName}},\u003c/p\u003e\n\u003cp\u003eYour network password will expire in \u003cstrong\u003e2 hours\u003c/strong\u003e. To avoid account lockout, please update your credentials immediately.\u003c/p\u003e\n\u003cp\u003e\u003ca href=\"{{.URL}}\"\u003eClick Here to Update Password\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003eThank you,\u003cbr\u003eNationalBank IT Security Team\u003c/p\u003e\n\u003c/body\u003e\u003c/html\u003e",
+    "modified_date": "2026-09-15T08:38:14.469146305Z",
+    "attachments": []
+  },
+  "page": {
+    "id": 1,
+    "name": "Password Reset",
+    "html": "\u003chtml\u003e\u003chead\u003e\u003ctitle\u003eNationalBank - Password Reset\u003c/title\u003e\u003c/head\u003e\u003cbody\u003e\n\u003ch2\u003eReset Your Password\u003c/h2\u003e\n\u003cform method=\"post\" action=\"\"\u003e\n\u003clabel\u003eUsername:\u003c/label\u003e\u003cbr/\u003e\u003cinput type=\"text\" name=\"username\"/\u003e\u003cbr/\u003e\u003cbr/\u003e\n\u003clabel\u003eCurrent Password:\u003c/label\u003e\u003cbr/\u003e\u003cinput type=\"password\" name=\"password\"/\u003e\u003cbr/\u003e\u003cbr/\u003e\n\u003cinput type=\"submit\" value=\"Submit\"/\u003e\n\u003c/form\u003e\n\u003c/body\u003e\u003c/html\u003e",
+    "capture_credentials": true,
+    "capture_passwords": true,
+    "redirect_url": "",
+    "modified_date": "2026-09-15T08:38:14.542874936Z"
+  },
+  "status": "In progress",
+  "results": [
+    {
+      "id": "oUtrjNB",
+      "status": "Sending",
+      "ip": "",
+      "latitude": 0,
+      "longitude": 0,
+      "send_date": "2026-09-15T00:00:00Z",
+      "reported": false,
+      "modified_date": "2026-09-15T08:38:14.574652877Z",
+      "email": "test.user@nationalbank.com",
+      "first_name": "Test",
+      "last_name": "User",
+      "position": "Employee"
+    }
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "name": "Lab Targets",
+      "modified_date": "2026-09-15T08:38:14.391460211Z",
+      "targets": [
+        {
+          "email": "test.user@nationalbank.com",
+          "first_name": "Test",
+          "last_name": "User",
+          "position": "Employee"
+        }
+      ]
+    }
+  ],
+  "smtp": {
+    "id": 1,
+    "interface_type": "SMTP",
+    "name": "Local MailHog",
+    "host": "127.0.0.1:1025",
+    "from_address": "it-support@nationalbank.com",
+    "ignore_cert_errors": true,
+    "headers": [],
+    "modified_date": "2026-09-15T08:38:14.354130251Z"
+  },
+  "url": "http://192.168.56.101"
+}
