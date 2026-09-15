@@ -1,7 +1,7 @@
-# NationalBank Reserve — Red Team Engagement
+# NationalBank Reserve - Red Team Engagement
 ## Checkpoint 5: Executive Pentest Report + Defensive Roadmap
 **Analyst:** Mustafa Musa Ahmed | **Year:** 2026  
-**Classification:** CONFIDENTIAL — Authorized Lab Environment  
+**Classification:** CONFIDENTIAL - Authorized Lab Environment  
 **Deliverables:** Full pentest report, risk matrix, 90-day roadmap, 5-min briefing
 
 ---
@@ -15,10 +15,10 @@ engineering + detection evasion (CP4), and this consolidated executive report
 (CP5).
 
 **The assessment identified 22 findings:**
-- **5 CRITICAL** — allow full compromise (RCE, auth bypass, DB credential leak)
-- **12 HIGH** — data theft, privilege escalation, account takeover
-- **3 MEDIUM** — defense-in-depth erosion
-- **2 LOW** — information disclosure / observation
+- **5 CRITICAL** - allow full compromise (RCE, auth bypass, DB credential leak)
+- **12 HIGH** - data theft, privilege escalation, account takeover
+- **3 MEDIUM** - defense-in-depth erosion
+- **2 LOW** - information disclosure / observation
 
 **Overall risk rating: CRITICAL.**
 
@@ -84,23 +84,23 @@ Full details in `Unified_Findings_Register.md`. Top 10 by severity:
 | NB-03 | Command Injection / RCE | 9.8 | CRITICAL |
 | NB-04 | API Broken Authentication | 9.8 | CRITICAL |
 | NB-05 | API SQL Injection | 9.8 | CRITICAL |
-| NB-06 | BOLA — cross-user object access | 8.6 | HIGH |
-| NB-09 | SSRF — local file read | 8.6 | HIGH |
+| NB-06 | BOLA - cross-user object access | 8.6 | HIGH |
+| NB-09 | SSRF - local file read | 8.6 | HIGH |
 | NB-18 | Unrestricted file upload | 8.8 | HIGH |
 | NB-07 | Excessive data exposure | 8.2 | HIGH |
 | NB-08 | Mass assignment to admin role | 8.1 | HIGH |
 
 ---
 
-## 6. Attack Chain — How It All Connects
+## 6. Attack Chain - How It All Connects
 
-1. **Initial Access (CP4)** — Phishing email (`it-support@nationalbank.com`) bypassed gateway → user clicked → credentials captured (NB-19, NB-20)
-2. **Authentication Bypass** — API admin endpoint open (NB-04) OR login SQLi (NB-05)
-3. **Lateral Access** — BOLA (NB-06) + excessive data exposure (NB-07) enumerate all users and API keys
-4. **Privilege Escalation** — Mass assignment (NB-08) grants admin role
-5. **Server Compromise** — SQLi (NB-02) → command injection (NB-03) → RCE as `www-data`
-6. **Persistence & Exfil** — SSRF (NB-09) reads `/etc/passwd`; config backup (NB-01) leaks DB credentials
-7. **Defense Evasion** — Custom XOR obfuscation (NB-21) defeats signature AV
+1. **Initial Access (CP4)** - Phishing email (`it-support@nationalbank.com`) bypassed gateway → user clicked → credentials captured (NB-19, NB-20)
+2. **Authentication Bypass** - API admin endpoint open (NB-04) OR login SQLi (NB-05)
+3. **Lateral Access** - BOLA (NB-06) + excessive data exposure (NB-07) enumerate all users and API keys
+4. **Privilege Escalation** - Mass assignment (NB-08) grants admin role
+5. **Server Compromise** - SQLi (NB-02) → command injection (NB-03) → RCE as `www-data`
+6. **Persistence & Exfil** - SSRF (NB-09) reads `/etc/passwd`; config backup (NB-01) leaks DB credentials
+7. **Defense Evasion** - Custom XOR obfuscation (NB-21) defeats signature AV
 
 **Time to full compromise: < 15 minutes.**
 
@@ -108,7 +108,7 @@ Full details in `Unified_Findings_Register.md`. Top 10 by severity:
 
 ## 7. 90-Day Defensive Roadmap
 
-### Days 0–7 — CONTAIN (Immediate)
+### Days 0-7 - CONTAIN (Immediate)
 
 | # | Action | Owner | Finding |
 |---|---|---|---|
@@ -120,7 +120,7 @@ Full details in `Unified_Findings_Register.md`. Top 10 by severity:
 | 6 | Force password reset for all lab accounts + enable MFA | IAM | NB-20 |
 | 7 | Enable WAF rules for SQLi/XSS/SSRF patterns | SecOps | NB-02, 05, 09, 11, 12 |
 
-### Days 8–30 — HARDEN (Short-term)
+### Days 8-30 - HARDEN (Short-term)
 
 | # | Action | Owner | Finding |
 |---|---|---|---|
@@ -138,7 +138,7 @@ Full details in `Unified_Findings_Register.md`. Top 10 by severity:
 | 19 | Add missing security headers (CSP, HSTS, XCTO, Referrer-Policy) | Web | NB-16 |
 | 20 | Restrict file-upload MIME + extension + scan with AV | Web | NB-18 |
 
-### Days 31–90 — MATURE (Long-term)
+### Days 31-90 - MATURE (Long-term)
 
 | # | Action | Owner |
 |---|---|---|
@@ -153,7 +153,7 @@ Full details in `Unified_Findings_Register.md`. Top 10 by severity:
 | 29 | Quarterly external + internal red team exercises | Mgmt |
 | 30 | Annual third-party compliance audit (PCI-DSS, RBI) | Compliance |
 
-**Success metrics:** Critical MTTR ≤ 7 days, High MTTR ≤ 30 days, zero
+**Success metrics:** Critical MTTR <= 7 days, High MTTR <= 30 days, zero
 spoofing emails delivered, phishing click-through rate < 5%, 100% MFA adoption
 on admin accounts.
 
@@ -168,7 +168,7 @@ on admin accounts.
 | Initial Access | Spearphishing Link | T1566.002 | NB-19 |
 | Execution | Command and Scripting Interpreter | T1059 | NB-03 |
 | Execution | User Execution | T1204.002 | NB-20 |
-| Persistence | (lab scope — not exploited) | — | — |
+| Persistence | (lab scope - not exploited) | - | - |
 | Privilege Escalation | Exploitation for Privesc | T1068 | NB-08 |
 | Defense Evasion | Obfuscated Files or Information | T1027 | NB-21 |
 | Defense Evasion | Software Packing | T1027.002 | NB-22 |
@@ -183,12 +183,12 @@ on admin accounts.
 ## 9. Evidence Index
 
 All evidence available under `evidence/`:
-- `C2_imported/` — Infrastructure scan + screenshots
-- `C3_imported/` — Web + API evidence, PoCs, reports
-- `gophish/` — Phishing campaign artifacts
-- `detect_*.txt` — Detection evasion scan results
-- `payload_*.txt` — Payload metrics
-- `PHASE*_SUMMARY.txt` — Per-phase summaries
+- `C2_imported/` - Infrastructure scan + screenshots
+- `C3_imported/` - Web + API evidence, PoCs, reports
+- `gophish/` - Phishing campaign artifacts
+- `detect_*.txt` - Detection evasion scan results
+- `payload_*.txt` - Payload metrics
+- `PHASE*_SUMMARY.txt` - Per-phase summaries
 
 ---
 
@@ -197,8 +197,8 @@ All evidence available under `evidence/`:
 The NationalBank Reserve lab environment was fully compromised in under 15
 minutes. The kill chain combined human, application, and infrastructure
 weaknesses, demonstrating the practical reality that security depends on every
-layer. The 90-day roadmap prioritizes containment (Days 0–7) before hardening
-(Days 8–30) and maturity (Days 31–90), with measurable success criteria to
+layer. The 90-day roadmap prioritizes containment (Days 0-7) before hardening
+(Days 8-30) and maturity (Days 31-90), with measurable success criteria to
 prevent regression.
 
 **Residual risk after roadmap execution: LOW** (assuming 80%+ of critical

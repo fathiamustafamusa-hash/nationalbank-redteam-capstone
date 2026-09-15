@@ -1,4 +1,4 @@
-# NationalBank Reserve — Unified Findings Register
+# NationalBank Reserve - Unified Findings Register
 ## Checkpoint 5 Deliverable | Authorized Lab Only
 **Analyst:** Mustafa Musa Ahmed | **Year:** 2026
 
@@ -13,11 +13,11 @@
 | NB-03 | C3 | Command Injection (RCE as www-data) | 9.8 | CRITICAL | T1190 / A03 | Confirmed |
 | NB-04 | C3 | Broken Authentication (admin API no auth) | 9.8 | CRITICAL | T1078 | Confirmed |
 | NB-05 | C3 | API SQL Injection (login bypass) | 9.8 | CRITICAL | T1190 / API8 | Confirmed |
-| NB-06 | C3 | BOLA — access any user object | 8.6 | HIGH | API1 | Confirmed |
+| NB-06 | C3 | BOLA - access any user object | 8.6 | HIGH | API1 | Confirmed |
 | NB-07 | C3 | Excessive Data Exposure (passwords + API keys) | 8.2 | HIGH | API3 | Confirmed |
 | NB-08 | C3 | Mass Assignment (self-assign admin) | 8.1 | HIGH | API5 | Confirmed |
-| NB-09 | C3 | SSRF — read local /etc/passwd | 8.6 | HIGH | API7 | Confirmed |
-| NB-10 | C3 | CSRF — password change form | 8.1 | HIGH | A01 | Confirmed |
+| NB-09 | C3 | SSRF - read local /etc/passwd | 8.6 | HIGH | API7 | Confirmed |
+| NB-10 | C3 | CSRF - password change form | 8.1 | HIGH | A01 | Confirmed |
 | NB-11 | C3 | Stored XSS | 7.2 | HIGH | A03 | Confirmed |
 | NB-12 | C3 | Reflected XSS | 6.1 | MEDIUM | A03 | Confirmed |
 | NB-13 | C2 | Directory indexing on /config/ | 7.5 | HIGH | T1083 | Confirmed |
@@ -34,7 +34,7 @@
 **TOTALS:**
 - CRITICAL: 5 (NB-01 → NB-05)
 - HIGH: 11 (NB-06 → NB-11, NB-13, NB-14, NB-18, NB-19, NB-20, NB-21)
-- MEDIUM: 4 (NB-12, NB-15, NB-16, NB-? — see note)
+- MEDIUM: 4 (NB-12, NB-15, NB-16, NB-? - see note)
 - LOW: 2 (NB-17, NB-22)
 - **Grand total: 22 findings**
 
@@ -52,10 +52,10 @@
 
 ## Severity Distribution
 
-- **CRITICAL:** 5 — Immediate RCE or full authentication bypass
-- **HIGH:** 11 — Data theft, privilege escalation, or account takeover
-- **MEDIUM:** 4 — Defense-in-depth erosion
-- **LOW:** 2 — Information disclosure / observation
+- **CRITICAL:** 5 - Immediate RCE or full authentication bypass
+- **HIGH:** 11 - Data theft, privilege escalation, or account takeover
+- **MEDIUM:** 4 - Defense-in-depth erosion
+- **LOW:** 2 - Information disclosure / observation
 
 **Overall Risk Rating: CRITICAL**
 
