@@ -9,3 +9,5 @@ video/*.mov
 evidence/gophish/api_key*.txt
 evidence/gophish_startup.log
 evidence/C3_imported/*.exe
+video/*.wav
+video/*.mp4
