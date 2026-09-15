@@ -1,0 +1,23 @@
+[
+  {
+    "api_key": "KEY-ADMIN-001",
+    "id": 1,
+    "password": "admin123",
+    "role": "admin",
+    "username": "admin"
+  },
+  {
+    "api_key": "KEY-USER-002",
+    "id": 2,
+    "password": "alice456",
+    "role": "user",
+    "username": "alice"
+  },
+  {
+    "api_key": "KEY-USER-003",
+    "id": 3,
+    "password": "bob789",
+    "role": "user",
+    "username": "bob"
+  }
+]

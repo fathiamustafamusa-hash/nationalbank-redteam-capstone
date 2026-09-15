@@ -6,3 +6,6 @@ __pycache__/
 .DS_Store
 video/*.mp4
 video/*.mov
+evidence/gophish/api_key*.txt
+evidence/gophish_startup.log
+evidence/C3_imported/*.exe
